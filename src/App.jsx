@@ -7,22 +7,25 @@ import Login from "./pages/Login";
 import LoginDisplay from "./pages/LoginDisplay";
 import Signup from "./pages/Signup";
 import SignupDisplay from "./pages/SignupDisplay";
+import BlogProvider from "./context/BlogContext";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="login-signup" element={<LoginSignupLayout />}>
-          <Route index element={<Navigate to="login" replace />} />
-          <Route path="login" element={<Login />} />
-          <Route path="login/welcome" element={<LoginDisplay />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="signup/signup-welcome" element={<SignupDisplay />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <BlogProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="login-signup" element={<LoginSignupLayout />}>
+            <Route index element={<Navigate to="login" replace />} />
+            <Route path="login" element={<Login />} />
+            <Route path="login/welcome" element={<LoginDisplay />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="signup/signup-welcome" element={<SignupDisplay />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </BlogProvider>
   );
 }
 

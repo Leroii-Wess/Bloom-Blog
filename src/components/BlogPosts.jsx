@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
-// import { Container } from "react-bootstrap";
-// import { useEffect, useState } from "react";
+import { useBlog } from "../context/BlogContext";
 import BlogItem from "./BlogItem";
 import styled from "styled-components";
 
-function BlogPosts({ blogs }) {
+function BlogPosts() {
+  const { blogs } = useBlog();
+
   return (
     <BlogContainer>
       {blogs.map((blog, i) => (
@@ -21,7 +21,6 @@ const BlogContainer = styled.div`
   width: 60%;
   margin-left: auto;
   margin-right: auto;
-  /* border: 1px solid #999; */
   padding: 2rem;
   display: grid;
   grid-template-columns: 2fr 2fr;

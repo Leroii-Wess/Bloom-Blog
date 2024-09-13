@@ -1,29 +1,24 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+// import { useState } from "react";
 import { Button } from "react-bootstrap";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
+import { useBlog } from "../context/BlogContext";
 
-function BlogForm({ onAddBlog }) {
-  const [blogTitle, setBlogTitle] = useState("");
-  const [blogAuthor, setBlogAuthor] = useState("");
-  const [tag, setTag] = useState("");
-  const [image] = useState("https://picsum.photos/100");
+function BlogForm() {
+  const {
+    handleAddBlogItem,
+    blogTitle,
+    setBlogTitle,
+    blogAuthor,
+    setBlogAuthor,
+    tag,
+    setTag,
+    image,
+    getCurrentTime,
+  } = useBlog();
 
   // /picsum/200/300
-
-  function getCurrentTime() {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-
-    const formattedHours = hours < 10 ? `0${hours}` : hours;
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-
-    return `${formattedHours}:${formattedMinutes}${
-      formattedHours > 12 ? "PM" : "AM"
-    }`;
-  }
 
   const handleAddBlog = (e) => {
     e.preventDefault();
@@ -40,7 +35,7 @@ function BlogForm({ onAddBlog }) {
       time: getCurrentTime(),
     };
 
-    onAddBlog(newBlog);
+    handleAddBlogItem(newBlog);
     setBlogTitle("");
     setBlogAuthor("");
     setTag("");
